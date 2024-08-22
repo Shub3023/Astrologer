@@ -1,0 +1,286 @@
+<!-- home cont> -->
+<ng-container *ngIf="home">
+  <ion-content>
+    <ion-header [translucent]="true">
+      <ion-toolbar color="secondary">
+        <ion-buttons slot="start">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+
+        <ion-title>Home Astrologer</ion-title>
+
+        <ion-buttons slot="end" class="ion-padding">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <h2>Home Page</h2>
+    </ion-content>
+   
+  </ion-content>
+  
+</ng-container>
+
+<!-- chat content -->
+<ng-container *ngIf="chat"  scrollY="true" >
+  <ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+        <ion-menu-button auto-hide="false"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Chat Astrologer</ion-title>
+      <ion-buttons slot="end" class="ion-padding">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content  >
+    <ion-card *ngFor="let item of object1">
+      <ion-card-content style="margin-right: 0; padding-right: 0">
+        <div>
+          <img
+            style="border: 1px solid red; border-radius: 50%"
+            src="../../../../assets/profile.jpeg"
+          />
+          <div>{{item.currentStatus}}</div>
+          <section>Silver</section>
+          <ion-img
+            src="../../../../assets/icons8-verified-badge-48.png"
+            alt=""
+          ></ion-img>
+        </div>
+        <div style="margin: 0; margin-left: 6px">
+          <p>
+            <span>{{item.ratings.ratingCounter}}</span>
+            <ion-icon style="height: 11px; width: 11px; color: #f3cc49; margin-left: 3px" name="star" ></ion-icon>
+            <!-- <ion-icon name="star"></ion-icon> -->
+          </p>
+          <span>{{item.receivedOrder}}</span>
+        </div>
+      </ion-card-content>
+  
+      <ion-card-content style="margin-left: 0; padding-left: 0; width: 210px">
+        <ion-card-header class="ion-no-padding" style="padding: 4px 10px">
+          <ion-card-title
+            style="margin: 0; padding: 0" (click)="this.dataService.headerName(item)">
+            {{item.salutation}}
+          </ion-card-title>
+          <ion-card-subtitle style="margin: 0; padding: 0 2px">
+            {{item.services[0].serviceTypeName + ","}}
+          </ion-card-subtitle>
+          <ion-card-subtitle style="margin: 0; padding: 0 2px">
+            Exp:{{item.aboutUs.workExperienceInMonth}}
+          </ion-card-subtitle>
+          <p>
+            <span
+              style="margin: 0; padding: 0 2px"
+              *ngFor="let lang of item.languages"
+            >
+              {{lang.languageName + ", "}}
+            </span>
+          </p>
+          <p style="margin-top: 19px" class="free-price">
+            <span>
+              <span class="free" style="color: red">FREE</span>
+              <span class="price">
+                {{ " " }}
+                <del>{{item.offerAmount}}</del>{{" ₹" + item.rates}}/min
+              </span>
+            </span>
+          </p>
+        </ion-card-header>
+      </ion-card-content>
+      <div class="icons" style="margin-right: 6px">
+        <!-- <ion-icon -->
+          <!-- name="call-outline" -->
+          <!-- *ngIf="item.availableConsultationType.mediumStatusCall; else hello" -->
+        <!-- ></ion-icon> -->
+        <ion-icon style="color: rgb(19, 103, 19);" *ngIf="item.availableConsultationType.mediumStatusCall; else hello" name="call"></ion-icon>
+        <ng-template #hello>
+          <div style="color: white">h</div>
+        </ng-template>
+        <ion-icon style="color:green;" name="chatbubble-ellipses" *ngIf="true;else hello1" ></ion-icon>
+        <ng-template #hello1>
+          <div style="color: white">h</div>
+        </ng-template>
+  
+        <ion-icon style="color:green;"name="videocam" *ngIf="item.availableConsultationType.mediumStatusVideo"></ion-icon>
+      </div>
+      <!-- <ion-buttons slot="end" class="ion-padding"> -->
+      <!-- <ion-icon name="notifications-outline"></ion-icon> -->
+      <!-- </ion-buttons> -->
+    </ion-card>
+  </ion-content>
+</ng-container>
+
+<!-- call content> -->
+<ng-container *ngIf="call"  scrollY="true" >
+  <ion-header [translucent]="true">
+    <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+        <ion-menu-button auto-hide="false"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Call Astrologer</ion-title>
+      <ion-buttons slot="end" class="ion-padding">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content  >
+    <ion-card *ngFor="let item of object1">
+      <ion-card-content style="margin-right: 0; padding-right: 0">
+        <div>
+          <img
+            style="border: 1px solid red; border-radius: 50%"
+            src="../../../../assets/profile.jpeg"
+          />
+          <div>{{item.currentStatus}}</div>
+          <section>Silver</section>
+          <ion-img
+            src="../../../../assets/icons8-verified-badge-48.png"
+            alt=""
+          ></ion-img>
+        </div>
+        <div style="margin: 0; margin-left: 6px">
+          <p>
+            <span>{{item.ratings.ratingCounter}}</span>
+            <ion-icon
+              style="height: 11px; width: 11px; color: #f3cc49; margin-left: 3px"
+              name="star"
+            ></ion-icon>
+          </p>
+          <span>{{item.receivedOrder}}</span>
+        </div>
+      </ion-card-content>
+  
+      <ion-card-content style="margin-left: 0; padding-left: 0; width: 210px">
+        <ion-card-header class="ion-no-padding" style="padding: 4px 10px">
+          <ion-card-title
+            style="margin: 0; padding: 0" (click)="this.dataService.headerName(item)">
+            {{item.salutation}}
+          </ion-card-title>
+          <ion-card-subtitle style="margin: 0; padding: 0 2px">
+            {{item.services[0].serviceTypeName + ","}}
+          </ion-card-subtitle>
+          <ion-card-subtitle style="margin: 0; padding: 0 2px">
+            Exp:{{item.aboutUs.workExperienceInMonth}}
+          </ion-card-subtitle>
+          <p>
+            <span
+              style="margin: 0; padding: 0 2px"
+              *ngFor="let lang of item.languages"
+            >
+              {{lang.languageName + ", "}}
+            </span>
+          </p>
+          <p style="margin-top: 19px" class="free-price">
+            <span>
+              <span class="free" style="color: red">FREE</span>
+              <span class="price">
+                {{ " " }}
+                <del>{{item.offerAmount}}</del>{{" ₹" + item.rates}}/min
+              </span>
+            </span>
+          </p>
+        </ion-card-header>
+      </ion-card-content>
+      <div class="icons" style="margin-right: 6px">
+        <ion-icon style="color: rgb(19, 103, 19);" *ngIf="item.availableConsultationType.mediumStatusCall; else hello" name="call"></ion-icon>        
+        <ng-template #hello>
+          <div style="color: white">h</div>
+        </ng-template>
+        <ion-icon style="color:green;" name="chatbubble-ellipses" *ngIf="true;else hello1" ></ion-icon>
+        <ng-template #hello1>
+          <div style="color: white">h</div>
+        </ng-template>
+  
+        <!-- <ion-icon name="videocam" *ngIf="item.availableConsultationType.mediumStatusVideo"></ion-icon> -->
+        <ion-icon style="color:green; "name="videocam" *ngIf="item.availableConsultationType.mediumStatusVideo"></ion-icon>
+        
+      </div>
+      <!-- <ion-buttons slot="end" class="ion-padding"> -->
+      <!-- <ion-icon name="notifications-outline"></ion-icon> -->
+      <!-- </ion-buttons> -->
+    </ion-card>
+  </ion-content>
+</ng-container>
+<!-- Live page -->
+ 
+<ng-container *ngIf="live">
+  <ion-content>
+    <ion-header [translucent]="true">
+      <ion-toolbar color="secondary">
+        <ion-buttons slot="start">
+          <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+
+        <ion-title>Live Astrologer</ion-title>
+
+        <ion-buttons slot="end" class="ion-padding">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <h2>Live Page</h2>
+    </ion-content>
+  </ion-content>
+</ng-container>
+
+<!-- Pooja page -->
+
+  <ng-container *ngIf="pooja">
+    <ion-content>
+      <ion-header [translucent]="true">
+        <ion-toolbar color="secondary">
+          <ion-buttons slot="start">
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+          </ion-buttons>
+  
+          <ion-title>Pooja Astrologer</ion-title>
+  
+          <ion-buttons slot="end" class="ion-padding">
+            <ion-icon name="notifications-outline"></ion-icon>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <h2>Pooja Page</h2>
+      </ion-content>
+     
+    </ion-content>
+  </ng-container>
+
+
+  <!-- Footer Tabs -->
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" [ngClass]="{'selected-tab': selectedTab === 'home'}" (click)="selectTab('home')" (click)="homePage()" >
+        <ion-icon name="home-sharp"></ion-icon>
+        <ion-label>HOME</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="chat" [ngClass]="{'selected-tab': selectedTab === 'chat'}" (click)="selectTab('chat')" (click)="fetchAPI('chat')">
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        <ion-label>Chat</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="live" [ngClass]="{'selected-tab': selectedTab === 'live'}" (click)="selectTab('live')" (click)="livePage()">
+        <ion-icon name="videocam-sharp"></ion-icon>
+        <ion-label>Live</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="call" [ngClass]="{'selected-tab': selectedTab === 'call'}" (click)="selectTab('call')" (click)="fetchAPI('call')">
+        <ion-icon name="call-sharp"></ion-icon>
+        <ion-label>Call</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="pooja" [ngClass]="{'selected-tab': selectedTab === 'pooja'}" (click)="selectTab('pooja')" (click)="poojaPage()">
+        <ion-icon name="flower-sharp"></ion-icon>
+        <ion-label>My Profile</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+    

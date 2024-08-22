@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Call Astrologer</ion-title>
+    <ion-buttons slot="end" class="ion-padding">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Card Part -->
+<ion-content scrollY="true">
+  <ion-card *ngFor="let item of object1" index="1">
+    <ion-card-content style="margin-right: 0; padding-right: 0;">
+      <div>
+      <img style="border: 1px solid red; border-radius: 50%;" src="../../../../assets/profile.jpeg">
+      <section>Online</section>
+       <div>Silver</div>
+      </div>
+      <div style="margin: 0; margin-left: 6px;">
+        <p>
+          <span>{{item.ratings.ratingCounter}}</span>
+          <ion-icon
+            style="height: 11px; width: 11px; color: #f3cc49; margin-left: 3px;"
+            name="star"
+          ></ion-icon>
+        </p>
+        <span>{{item.receivedOrder}}</span>
+      </div>
+    </ion-card-content>
+
+    <ion-card-content style="margin-left: 0; padding-left: 0; width: 210px;">
+      <ion-card-header class="ion-no-padding" style="padding: 4px 10px;">
+        <ion-card-title style="margin: 0; padding: 0;">
+          {{item.salutation}}
+        </ion-card-title>
+        <ion-card-subtitle style="margin: 0; padding: 0 2px;">
+          {{item.services[0].serviceTypeName + ","}}
+        </ion-card-subtitle>
+        <ion-card-subtitle style="margin: 0; padding: 0 2px;">
+          Exp:{{item.aboutUs.workExperienceInMonth}}
+        </ion-card-subtitle>
+        <p>
+          <span style="margin: 0; padding: 0 2px;" *ngFor="let lang of item.languages">
+            {{lang.languageName + ", "}}
+          </span>
+        </p>
+        <p style="margin-top: 19px;" class="free-price">
+          <span>
+            <span class="free" style="color: red;">FREE</span>
+            <span class="price">
+              {{ " " }}
+              <del>{{item.offerAmount}}</del>{{" ₹" + item.rates}}/min
+            </span>
+          </span>
+        </p>
+      </ion-card-header>
+    </ion-card-content>
+    <div class="icons">
+      <ion-icon name="call-outline" *ngIf=item.availableConsultationType.mediumStatusCall></ion-icon>
+      <ion-icon name="chatbubble-ellipses-outline" *ngIf="item.availableConsultationType.mediumStatusChat"></ion-icon>
+      <ion-icon name="videocam-outline" *ngIf="item.availableConsultationType.mediumStatusVideo"></ion-icon>
+    </div>
+
+    <!-- <ion-buttons slot="end" class="ion-padding"> -->
+      <!-- <ion-icon name="notifications-outline"></ion-icon> -->
+    <!-- </ion-buttons> -->
+  </ion-card>
+</ion-content>
+

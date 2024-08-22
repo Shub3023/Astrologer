@@ -1,0 +1,34 @@
+<ion-content>
+  <router-outlet></router-outlet>
+
+</ion-content>
+
+  <ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" [ngClass]="{'selected-tab': selectedTab === 'home'}" (click)="selectTab('home')" [routerLink]="['/tabs/home']">
+      <ion-icon name="home-sharp">Home</ion-icon>
+      <ion-label>HOME</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="chat" [ngClass]="{'selected-tab': selectedTab === 'chat'}" (click)="selectTab('chat')" [routerLink]="['/tabs/chat']">
+      <ion-icon  name="chatbubble-ellipses-outline">Chat</ion-icon>
+      <ion-label>Chat</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="live" [ngClass]="{'selected-tab': selectedTab === 'live'}" (click)="selectTab('live')" [routerLink]="['/tabs/live']">
+      <ion-icon  name="videocam-sharp"></ion-icon>
+      <ion-label>Live</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="call" [ngClass]="{'selected-tab': selectedTab === 'call'}" (click)="selectTab('call')" [routerLink]="['/tabs/call']">
+      <ion-icon name="call-sharp"></ion-icon>
+      <ion-label>Call</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="pooja" [ngClass]="{'selected-tab': selectedTab === 'pooja'}" (click)="selectTab('pooja')" [routerLink]="['/tabs/pooja']">
+      <ion-icon name="flower-sharp"></ion-icon>
+      <ion-label>Pooja</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

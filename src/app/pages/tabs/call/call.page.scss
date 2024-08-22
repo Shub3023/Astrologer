@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+* {
+    font-family: 'Poppins';
+}
+
+ion-header {
+    ion-toolbar {
+        ion-buttons {
+            ion-icon {
+                height: 25px;
+                width: 25px;
+            }
+        }
+    }
+}
+
+/* Card Part */
+ion-content {
+    margin-top: 2vh;
+
+    ion-card {
+        display: flex;
+        flex-direction: row;
+
+        ion-card-content {
+            div{
+            img {
+                height: 100px;
+                width: 100px;
+            }
+            section{
+                    height: 20px;
+                    width: 65px;
+                    border: 1px solid red;
+                    border-radius: 10px;
+                    background-color: red;
+                    color: white;
+                    font-size: 0.9rem;
+                    position: absolute;
+                    top: 57%;
+                    left: 56%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+               }
+
+            div{
+                height: 20px;
+                width: 100px;
+                border: 1px solid;
+                background-color: rgb(79, 78, 78);
+                color: white;
+                position: absolute;
+                top: 8px;
+                left: 16px;
+                transform: translate(-36%, -32%) rotate(-37deg) ;
+                font-size: 0.8rem;
+                // transform: translate(-18%, 44%);
+            }
+        }
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1vh;
+            // margin-left: 15px;
+
+            ion-icon {
+                height: 30px;
+                width: 30px;
+                margin-top: 2.5vh;
+                margin-left: 5vw;
+                color: rgb(12, 135, 12);
+            }
+        }
+    }
+}

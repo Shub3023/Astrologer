@@ -1,0 +1,185 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start" onclick="backButton()">
+      <ion-back-button defaultHref="/home-page" ></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">My Profile</ion-title>
+    <ion-buttons slot="end" class="ion-padding">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+    <ion-img  src="../../../assets/profile-image.png"></ion-img>
+  </div>
+  <ion-segment value="info"  mode="ios" scrollable="true">
+    <ion-segment-button value="info" (click)="basicInfo()">
+      <ion-label>Basic Info</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="about-me" (click)="aboutMe()" >
+      <ion-label>About Me</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="bank-details" (click)="bankDetails()">
+      <ion-label>Bank Details</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="languages" (click)="language()">
+      <ion-label>Languages</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="Specialzation" (click)="specialization()">
+      <ion-label>Specialzation</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="gallery" (click)="gallary()">
+      <ion-label>Gallery</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+<ng-cotainer *ngIf="basic_info">
+  <ion-content>
+    <ion-card>
+           <ion-title style="padding: 10px;" class="title">Details</ion-title>
+       <ion-list style="margin-left: 10px;">
+        <ion-item>
+           <div style="display: flex; width: 100%; ">
+            <div style="width: 30%;" class="label">First Name</div>
+            <div class="value">{{this.data?.firstName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width:30%;" class="label">Last Name</div>
+            <div style="">{{this.data?.lastName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width:100%; ">
+            <div style="width: 30%;" class="label">Email</div>
+            <div style="">{{this.data?.email[0].email}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Birth Time</div>
+            <div>{{this.data?.birthTime}}</div> 
+           </div>
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Birth Date</div>
+            <div>{{this.data?.birthDate}}</div> 
+           </div>
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Gender</div>
+            <div>{{this.data?.gender}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;" c>
+            <div style="width: 30%;" class="label" >Mobile</div>
+            <div>{{this.data?.phone[0].phone}}</div> 
+           </div>
+
+        </ion-item>
+       </ion-list>
+       <ion-title style="padding: 10px;" class="title">Permanent Adress</ion-title>
+       <ion-list style="margin-left: 10px;">
+        <ion-item>
+          <div style="display: flex; width: 100%;" class="main-div">
+            <div style="width: 30%;"  class="label" >City</div>
+            <div >{{this.data?.address[0].city.cityName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;"  class="label">Areacode</div>
+            <div >{{this.data?.address[0].areaCode}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;"  class="label">State</div>
+            <div>{{this.data?.address[0].state.stateName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Country</div>
+            <div >{{this.data?.address[0].country.countryName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Complete Details</div>
+            <div >{{this.data?.address[0].country.countryName}}</div> 
+           </div>
+        </ion-item>
+       </ion-list>
+        <ion-buttons style="width: 100%;">
+          
+          <ion-button class="ion-margin-verticle"><ion-icon name="add-outline"></ion-icon>Edit Profile</ion-button>
+        </ion-buttons>
+   </ion-card>
+  </ion-content>
+</ng-cotainer>
+
+<ng-container *ngIf="about_me" >
+   <ion-content class="about">
+    <ion-card>
+      <ion-title >About Me</ion-title>
+      <p>Hi</p>
+    </ion-card>
+   </ion-content>
+</ng-container>
+
+<!-- Bank Details -->
+<ng-container *ngIf="bank_details">
+<ion-content>
+  <ion-button class="ion-margin-verticle" style="margin-left: 88%; margin-top: 1vh; color: black;" class="ion-margin-verticle"><ion-icon name="add-outline"></ion-icon>Add Bank</ion-button>
+  <ion-card>
+    <ion-list style="margin-left: 10px;">
+    <ion-item>ICICI Bank <p slot="end">Verified</p></ion-item>
+      <ion-item>
+         <div style="display: flex; width: 100%; ">
+          <div style="width: 30%;" class="label">Full Name</div>
+          <div class="value">{{this.data?.firstName}}</div> 
+         </div>
+      </ion-item>
+      <ion-item>
+        <div style="display: flex; width: 100%; ">
+         <div style="width: 30%;" class="label">Account Number</div>
+         <div class="value">{{this.data?.firstName}}</div> 
+        </div>
+     </ion-item>
+     <ion-item>
+      <div style="display: flex; width: 100%; ">
+       <div style="width: 30%;" class="label">IFSC Code</div>
+       <div class="value">{{this.data?.firstName}}</div> 
+      </div>
+   </ion-item>
+   <ion-item>
+    <div style="display: flex; width: 100%; ">
+     <div style="width: 30%;" class="label">Account Type</div>
+     <div class="value">{{this.data?.firstName}}</div> 
+    </div>
+ </ion-item>
+ <ion-item>
+  <div style="display: flex; width: 100%; ">
+   <div style="width: 30%;" class="label">Created Date</div>
+   <div class="value">{{this.data?.firstName}}</div> 
+  </div>
+</ion-item>
+
+    </ion-list>
+  </ion-card>
+</ion-content>
+</ng-container>

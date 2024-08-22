@@ -1,0 +1,112 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Chat Astrologer</ion-title>
+    <ion-buttons slot="end" class="ion-padding">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-header> -->
+<!-- <ion-toolbar> -->
+<!-- <ion-title>Back Button</ion-title> -->
+<!-- </ion-toolbar> -->
+<!-- </ion-header> -->
+<!-- <ion-content class="ion-padding"> -->
+<!-- <h1>Page One</h1> -->
+<!-- <p>Navigate to the next page to see the back button.</p> -->
+<!-- <ion-nav-link router-direction="forward" [component]="component" router> -->
+<!-- <ion-button>Navigate</ion-button> -->
+<!-- </ion-nav-link> -->
+<!-- </ion-content> -->
+
+<!-- Card Part -->
+<ion-content scrollY="true">
+  <ion-card *ngFor="let item of object1">
+    <ion-card-content style="margin-right: 0; padding-right: 0">
+      <div>
+        <img
+          style="border: 1px solid red; border-radius: 50%"
+          src="../../../../assets/profile.jpeg"
+        />
+        <div>{{item.currentStatus}}</div>
+        <section>Silver</section>
+        <ion-img
+          src="../../../../assets/icons8-verified-badge-48.png"
+          alt=""
+        ></ion-img>
+      </div>
+      <div style="margin: 0; margin-left: 6px">
+        <p>
+          <span>{{item.ratings.ratingCounter}}</span>
+          <ion-icon
+            style="height: 11px; width: 11px; color: #f3cc49; margin-left: 3px"
+            name="star"
+          ></ion-icon>
+        </p>
+        <span>{{item.receivedOrder}}</span>
+      </div>
+    </ion-card-content>
+
+    <ion-card-content style="margin-left: 0; padding-left: 0; width: 210px">
+      <ion-card-header class="ion-no-padding" style="padding: 4px 10px">
+        <ion-card-title
+          style="margin: 0; padding: 0"
+          (click)="this.data.headerName(item)"
+        >
+          {{item.salutation}}
+        </ion-card-title>
+        <ion-card-subtitle style="margin: 0; padding: 0 2px">
+          {{item.services[0].serviceTypeName + ","}}
+        </ion-card-subtitle>
+        <ion-card-subtitle style="margin: 0; padding: 0 2px">
+          Exp:{{item.aboutUs.workExperienceInMonth}}
+        </ion-card-subtitle>
+        <p>
+          <span
+            style="margin: 0; padding: 0 2px"
+            *ngFor="let lang of item.languages"
+          >
+            {{lang.languageName + ", "}}
+          </span>
+        </p>
+        <p style="margin-top: 19px" class="free-price">
+          <span>
+            <span class="free" style="color: red">FREE</span>
+            <span class="price">
+              {{ " " }}
+              <del>{{item.offerAmount}}</del>{{" ₹" + item.rates}}/min
+            </span>
+          </span>
+        </p>
+      </ion-card-header>
+    </ion-card-content>
+    <div class="icons" style="margin-right: 6px">
+      <ion-icon
+        name="call-outline"
+        *ngIf="item.availableConsultationType.mediumStatusCall; else hello"
+      ></ion-icon>
+      <ng-template #hello>
+        <div style="color: white">h</div>
+      </ng-template>
+      <ion-icon
+        name="chatbubble-ellipses-outline"
+        *ngIf="item.availableConsultationType.mediumStatusChat;else hello1"
+      ></ion-icon>
+      <ng-template #hello1>
+        <div style="color: white">h</div>
+      </ng-template>
+
+      <ion-icon
+        name="videocam-outline"
+        *ngIf="item.availableConsultationType.mediumStatusVideo"
+      ></ion-icon>
+    </div>
+    <!-- <ion-buttons slot="end" class="ion-padding"> -->
+    <!-- <ion-icon name="notifications-outline"></ion-icon> -->
+    <!-- </ion-buttons> -->
+  </ion-card>
+</ion-content>

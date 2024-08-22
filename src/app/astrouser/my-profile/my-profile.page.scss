@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+}
+ion-content{
+    --background:#decb8c;
+    div{
+        ion-img{
+            height: 32%;
+            width: 32%;
+            margin: auto;
+            margin-top: 5%;
+            background-color: #decb8c;
+        }
+    }
+      ion-card{
+    
+        width: 92%;
+        margin: auto;
+        margin-top: 2%;
+        border-radius: 10px;
+        border-bottom: 5px solid #f3cc49;
+      }
+    
+
+    }
+
+
+
+ion-segment {
+    margin-top:10px;
+    --background:white;
+    width: 90%;
+    margin: auto;
+    color: black;
+    border-radius: 10px;
+    --indicator-color
+: var(
+--ion-color-step-350
+, var(
+--ion-background-color-step-350
+, var(
+--ion-background-color
+,
+#fff
+)));
+  }
+
+ion-card{
+
+  div{
+
+  }
+    // margin
+}
+
+#btn{
+    
+}
+ion-button{
+  width: 40%;
+  margin: auto;
+  // --background:#f3cc49;
+  background-color: #f3cc49;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  border-radius:5px;
+  --color:black;
+  font-size: 0.8rem;
+  
+  
+}
+ion-item{
+  --min-height:10px;
+}
+
+.alert-button.sc-ion-alert-ios {
+  color:#f3cc49
+}
+
+// Notifications
+ion-card{
+  ion-toggle{
+ width: 50px;
+ height: 50px;
+  }
+}
+
+// Custom css
+.label{
+  font-weight:600;
+  font-size: 0.8rem;
+}
+.title{
+  font-size: 1rem;
+  font-weight: 600;
+  color: black;
+}
+.value{
+  font-weight: 300;
+  font-size: 0.8rem;
+}

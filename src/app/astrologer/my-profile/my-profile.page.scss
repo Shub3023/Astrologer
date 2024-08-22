@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+}
+ion-content{
+            // --background:#decb8c;
+            --background:#FFECB2;
+     
+    div{
+        ion-img{
+            height: 32%;
+            width: 32%;
+            margin: auto;
+            // background-color: #decb8c;
+            background-color: #FFECB2;
+        }
+    }
+    ion-segment{
+    --background:#fff;
+    // background-color:#f3cc49 ;
+    width: 90%;
+    margin: auto;
+    margin-top: 1vh;
+    --indicator-color
+: var(
+--ion-color-step-350
+, var(
+--ion-background-color-step-350
+, var(
+--ion-background-color
+,
+#fff
+)));
+    
+    }
+
+    ion-content{
+        ion-card{
+            width: 90%;
+            margin: auto;
+            margin-top: 1vh;
+            border-radius: 10px;
+            border-bottom: 5px solid #f3cc49;
+
+            ion-list{
+                ion-item{
+             --min-height:10px;
+                div{
+                    // display: flex;
+                    // width: 100%;
+                }
+
+                }
+            }
+            ion-button{
+                width: 40%;
+                margin: auto;
+                // --background:#f3cc49;
+                background-color: #f3cc49;
+                margin-top: 1vh;
+                margin-bottom: 1vh;
+                border-radius:5px;
+                --color:black;
+                font-size: 0.8rem;
+              
+            }
+        }
+    }
+}
+
+
+    ion-content .about{
+
+        ion-card{
+
+            ion-title{
+                font-weight: 600;
+                padding: 10px;
+            }
+            p{
+                font-weight: 500;
+                padding: 10px;
+            }
+        }
+    }
+
+// Custom css
+.label{
+    // font-size: 1.2rem;
+    font-weight:600;
+    font-size: 0.8rem;
+}
+.title{
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+}
+.value{
+    font-weight: 300;
+    font-size: 0.8rem;
+}

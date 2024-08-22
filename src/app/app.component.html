@@ -1,3 +1,65 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
+<!-- 
+  import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonLabel, IonButtons, IonImg } from '@ionic/angular/standalone';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms'; 
+import {FormControl} from '@angular/forms';
+
+@Component({
+  selector: 'app-verify-otp',
+  templateUrl: './verify-otp.page.html',
+  styleUrls: ['./verify-otp.page.scss'],
+  standalone: true,
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent,IonLabel,IonButton,
+    IonButtons,IonImg, MatFormFieldModule,MatSelectModule,MatInputModule,
+    MatDatepickerModule,MatNativeDateModule,ReactiveFormsModule,CommonModule,NgxMatTimepickerModule,MatIconModule],
+})
+export class VerifyOtpPage implements OnInit {
+
+  isButtonDisabled:boolean=true;
+  constructor() { }
+
+  ngOnInit() {
+    this.startTimer();
+  }
+  hide:boolean=true;
+  time: number = 10;
+  display:any ;
+  interval:any;
+
+ startTimer() {
+    this.interval = setInterval(() => {
+      if (this.time ===10) {
+        this.time--;
+        this.isButtonDisabled=true;
+      }
+      else if(this.time==0){
+        this.isButtonDisabled=true;
+        this.time=10;
+        clearInterval(this.interval);
+        this.hide=false;
+      } 
+      else {
+        this.time--;
+        this.isButtonDisabled=true;
+
+
+      }
+      this.display=this.time
+    }, 1000);
+  }
+
+} -->

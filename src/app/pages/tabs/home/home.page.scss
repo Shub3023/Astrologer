@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+.header{
+  background-color: #f7cf2df6 ;
+}
+img{
+  height: 47px;
+  width: 74px;
+  
+}
+.header{
+  // height: 5%;
+  display: flex;
+  align-items: center;
+}
+.left-side-icon{
+  margin-left: 3% ;
+}
+
+.right-side-icon{
+margin-left: 33%;
+margin-top: 3%;
+}
+
+#menu{
+  height: 30px;
+  width: 30px;
+}
+
+.icon{
+  padding: 10px;
+  height: 25px;
+  width: 25px;
+
+}
+.body{
+  height: 82%;
+}
+.footer{
+  display: flex;
+}
+.footer-icons{
+  margin: 0;
+  padding: 0;
+  margin-left: 8px;
+  color: gray;
+}
+
+.footer-name{
+  margin: 0;
+  margin-right: 2px;
+}
+
+.footer-iocons-name{
+  padding: 21px;
+}

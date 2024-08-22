@@ -1,0 +1,162 @@
+<ion-content>
+  <ion-content class="main">
+     <ion-img src="../../assets/WhatsApp_Image_2024-08-01_at_11.01.15_AM-removebg-preview.png"></ion-img>
+     <h2>Test Astrologer</h2>
+  </ion-content>
+
+  <ion-content class="body">
+    <h3>Sign Up</h3>
+    <!-- <button  (click)="onUser()" type="button" style="height: 40px ; width: 40px;">Button</button> -->
+   <form [formGroup]="signUpForm" >
+       <ion-list>
+        <div class="title" >
+          <mat-form-field appearance="outline" class="account-type" >
+            <mat-label>Account Type</mat-label>
+              <mat-select matNativeControl formControlName="account" >
+                <mat-option value="Astologer" (click)="onUser()">Astologer</mat-option>
+                <mat-option value="User" (click)="onUser()">User</mat-option>
+              </mat-select>
+              <!-- <mat-error *ngIf="signUpForm.get('account')?.hasError('required')">This field is required</mat-error>
+              <mat-error *ngIf="signUpForm.get('account')?.hasError('pattern')">Must be your full name</mat-error> -->
+            </mat-form-field>
+        </div>
+  
+    <div class="name-em-mo">
+      <div class="name">
+      <mat-form-field appearance="outline" class="input-group">
+        <mat-label>First name</mat-label>
+        <input matInput type="text" formControlName="firstName"  />
+        <mat-error *ngIf="signUpForm.get('firstName')?.hasError('required')"  color="danger">This field is required</mat-error>
+        <!-- <mat-error *ngIf="signUpForm.get('firstName)?.hasError('pattern')">Must be your full name</mat-error> -->
+      </mat-form-field>
+    </div>
+    <div class="last">
+      <mat-form-field appearance="outline" class="input-group">
+        <mat-label>Last name</mat-label>
+        <input matInput type="text" formControlName="lastName" />
+        <mat-error color="danger" *ngIf="signUpForm.get('lastName')?.hasError('required')">This field is required</mat-error>
+        <mat-error color="danger" *ngIf="signUpForm.get('lastName')?.hasError('pattern')">Must be your full name</mat-error>
+
+      </mat-form-field>
+    </div>
+    </div>
+   
+    <div class="name-em-mo">
+    <div class="bd">
+      <mat-form-field appearance="outline" class="input-group">
+        <mat-label>Date of birth</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          type="text"
+          placeholder="Birth Date"
+          formControlName="date"
+          
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="signUpForm.get('date')?.hasError('required')">This field is required</mat-error>
+        <mat-error style="color: red;" *ngIf="signUpForm.get('date')?.hasError('pattern')">Must be your full name</mat-error>
+
+      </mat-form-field>
+    </div>
+    <div class="gender">
+      <mat-form-field appearance="outline" >
+        <mat-label>Gender</mat-label>
+          <mat-select matNativeControl formControlName="gender">
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Other">Other</mat-option>
+          </mat-select>
+          <mat-error *ngIf="signUpForm.get('gender')?.hasError('required')">This field is required</mat-error>
+          <mat-error *ngIf="signUpForm.get('gender')?.hasError('pattern')">Must be your full name</mat-error>
+        </mat-form-field>
+    </div>
+  </div>
+  <div class="phone" *ngIf="astologer" >
+    <mat-form-field appearance="outline" class="input-group">
+      <mat-label>Specialization</mat-label>
+      <input matInput type="text" formControlName="specialization" />
+      <mat-error *ngIf="signUpForm.get('specialization')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="signUpForm.get('specialization')?.hasError('pattern')">Must be your full name</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="name-em-mo" *ngIf="astologer" >
+    <div class="name">
+    <mat-form-field appearance="outline" class="input-group">
+      <mat-label>Language</mat-label>
+      <!-- <input matInput type="text" formControlName="language"  /> -->
+      <mat-select matNativeControl formControlName="language"  >
+        <mat-option value="Hindi">Hindi</mat-option>
+        <mat-option value="Marathi">Marathi</mat-option>
+        <mat-option value="English">English</mat-option>
+        <mat-option value="Tamil">Tamil</mat-option>
+      </mat-select>
+      <mat-error *ngIf="signUpForm.get('language')?.hasError('required')"  color="danger">This field is required</mat-error>
+      <!-- <mat-error *ngIf="signUpForm.get('firstName)?.hasError('pattern')">Must be your full name</mat-error> -->
+    </mat-form-field>
+  </div>
+  <div class="last" >
+    <mat-form-field appearance="outline" class="input-group">
+      <mat-label>Total Experience in month</mat-label>
+      <input matInput type="text" formControlName="experience" />
+      <mat-error color="danger" *ngIf="signUpForm.get('experience')?.hasError('required')">This field is required</mat-error>
+      <mat-error color="danger" *ngIf="signUpForm.get('experience')?.hasError('pattern')">Must be your full name</mat-error>
+
+    </mat-form-field>
+  </div>
+  </div>
+   
+    <div *ngIf="user">
+      <mat-form-field appearance="outline" class="input-group" >
+        <mat-label>HH:MM Birth day time</mat-label>
+        <input
+          matInput
+          [ngxMatTimepicker]="pickerTime"
+          readonly
+          formControlName="time"
+        />
+        <mat-icon matSuffix>access_time</mat-icon>
+        <ngx-mat-timepicker #pickerTime></ngx-mat-timepicker>
+        <mat-error *ngIf="signUpForm.get('time')?.hasError('required')">This field is required</mat-error>
+        <mat-error *ngIf="signUpForm.get('time')?.hasError('pattern')">Must be your full name</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="phone">
+    <mat-form-field appearance="outline" class="input-group">
+      <mat-label>Phone number</mat-label>
+      <input matInput type="text" formControlName="phone" />
+      <mat-error *ngIf="signUpForm.get('phone')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="signUpForm.get('phone')?.hasError('pattern')">Must be your full name</mat-error>
+    </mat-form-field>
+    
+  </div>
+
+  <div class="email">
+    <mat-form-field appearance="outline" class="input-group">
+    <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email"  />
+      <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">This field is required</mat-error>
+      <mat-error *ngIf="signUpForm.get('email')?.hasError('pattern')">Must be your full name</mat-error>
+    </mat-form-field>
+  </div>
+  </ion-list>
+</form>
+  <!-- <ion-item style="margin-bottom: 20px;"> -->
+    <div class="term-condition">
+      <ion-checkbox class="checkbox-icon"></ion-checkbox>
+      <p style="margin-left: 3px;">
+        I have read Test Astrologer Privacy Policy and agree to the Terms and conditions
+      </p>
+  
+    </div>
+    <!-- </ion-item> -->
+    <button id="btn" type="button" (click)="onSubmit()">GET OTP</button>
+  
+  </ion-content>
+  
+</ion-content>

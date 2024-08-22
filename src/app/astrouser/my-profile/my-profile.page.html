@@ -1,0 +1,153 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start" onclick="backButton()">
+      <ion-back-button defaultHref="/home-page" ></ion-back-button>
+    </ion-buttons>
+    <ion-title style="text-align: center;">My Profile</ion-title>
+    <ion-buttons slot="end" class="ion-padding">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-img  src="../../../assets/profile-image.png"></ion-img>
+  </div>
+  <ion-segment value="info"  mode="ios" scrollable="true" style="margin-top: 5px;">
+    <ion-segment-button value="info" (click)="basicInfo()">
+      <ion-label>Basic Info</ion-label>
+      
+    </ion-segment-button>
+    <ion-segment-button value="notifications" (click)="notification()">
+      <ion-label>Notifications</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="account" (click)="acoountDeactivation()">
+      <ion-label>Account Deactivate</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <!-- Basic Info -->
+  <ng-container *ngIf="basic_info">
+      <ion-card>
+       
+      <ion-title style="padding: 10px;" class="title">Details</ion-title>
+       <ion-list style="margin-left: 10px;">
+        <ion-item>
+           <div style="display: flex; width: 100%; ">
+            <div style="width: 30%;" class="label">First Name</div>
+            <div class="value">{{this.data?.firstName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width:30%;" class="label">Last Name</div>
+            <div class="value">{{this.data?.lastName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width:100%; ">
+            <div style="width: 30%;" class="label">Email</div>
+            <div style="" class="value">{{this.data?.email[0].email}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Birth Time</div>
+            <div class="value">{{this.data?.birthTime}}</div> 
+           </div>
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Birth Date</div>
+            <div class="value">{{this.data?.birthDate}}</div> 
+           </div>
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Gender</div>
+            <div class="value">{{this.data?.gender}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;" c>
+            <div style="width: 30%;" class="label">Mobile</div>
+            <div class="value">{{this.data?.phone[0].phone}}</div> 
+           </div>
+
+        </ion-item>
+       </ion-list>
+       <ion-title style="padding: 10px;" class="title">Place of Birth</ion-title>
+       <ion-list style="margin-left: 10px;">
+        <ion-item>
+          <div style="display: flex; width: 100%;" class="main-div">
+            <div style="width: 30%;"  class="label-title" class="label" >City</div>
+            <div class="value">{{this.data?.address[0].city.cityName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label" >Areacode</div>
+            <div class="value">{{this.data?.address[0].areaCode}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label" >State</div>
+            <div class="value">{{this.data?.address[0].state.stateName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Country</div>
+            <div class="value">{{this.data?.address[0].country.countryName}}</div> 
+           </div>
+
+        </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 30%;" class="label">Complete Details</div>
+            <div class="value">{{this.data?.address[0].country.countryName}}</div> 
+           </div>
+        </ion-item>
+       </ion-list>
+        <ion-buttons style="width: 100%;">
+          
+          <ion-button class="ion-margin-verticle"><ion-icon name="add-outline"></ion-icon>Edit Profile</ion-button>
+        </ion-buttons>
+  </ion-card>
+</ng-container>
+<!-- Notifications -->
+<ng-container *ngIf="notifications">
+<ion-card >
+  <ion-list style="margin-top: 2vh;">
+    <ion-item>Astro-chat<ion-toggle slot="end"></ion-toggle><br /><br /></ion-item>
+    <ion-item>Live Events<ion-toggle slot="end"></ion-toggle><br /><br /></ion-item>
+
+  </ion-list>
+</ion-card>
+</ng-container>
+
+<ng-cotainer *ngIf="account_deactivation">
+<ion-card>
+  <div style="width: 90%; margin: auto; margin-top: 1vh;margin-bottom: 1vh;">
+      <ion-text>Account Deactivation</ion-text>
+      <ion-select label="Choose a reason" label-placement="floating" fill="outline">
+      <ion-select-option value="apple">Just need a break</ion-select-option>
+      <ion-select-option value="banana">Trouble getting started</ion-select-option>
+      <ion-select-option value="orange">Privacy Concern</ion-select-option>
+      <ion-select-option value="orange">Concern about my data</ion-select-option>
+    </ion-select>
+    <ion-button style="width: 60%; margin-left: 20%; --background:#f3cc49 ;">Deactivate Account</ion-button>
+  
+  </div>
+
+</ion-card>
+</ng-cotainer>
+</ion-content>
