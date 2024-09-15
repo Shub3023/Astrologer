@@ -1,0 +1,15 @@
+<ion-content>
+  <h2></h2>
+  <ion-buttons (click)="backButton()" >
+    <ion-icon name="close-outline" (click)="backButton()" ></ion-icon>
+  </ion-buttons>
+  <div>
+  <ion-img src="{{this.dataService.userData.profileAstroPhoto}}"></ion-img>
+  <ion-card-title>{{this.dataService.userData.salutation}}</ion-card-title>
+  <p>This offer at {{this.dataService.userData.currency+" "}} {{this.dataService.userData.rates}}{{this.dataService.userData.serviceTimeType}} is for 5 mins only. Astologer will try to answer at least one question.</p>
+  <ion-button *ngIf="call">Call Now for {{this.dataService.userData.currency+" "}} {{this.dataService.userData.rates}}{{this.dataService.userData.serviceTimeType}}</ion-button>
+  <ion-button *ngIf="chat">Chat Now for {{this.dataService.userData.currency+" "}} {{this.dataService.userData.rates}}{{this.dataService.userData.serviceTimeType}}</ion-button>
+  <ion-button *ngIf="video">Video Now for {{this.dataService.userData.currency+" "}} {{this.dataService.userData.rates}}{{this.dataService.userData.serviceTimeType}}</ion-button>
+
+</div>
+</ion-content>

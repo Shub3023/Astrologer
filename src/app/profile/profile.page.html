@@ -13,7 +13,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content scrollY="true">
+<ion-content  >
   <ion-card >
     <ion-card-content style="margin-right: 0; padding-right: 0">
       <div>
@@ -21,79 +21,63 @@
           style="border: 1px solid red; border-radius: 50%"
           src="../../../../assets/profile.jpeg"
         />
-
         <div>{{this.data.userData.currentStatus}}</div>
-
-        <section>Silver</section>
+        <section style="font-size: 0.6rem;">Silver</section>
+        <ion-img
+          src="../../../../assets/icons8-verified-badge-48.png"
+          alt=""
+        ></ion-img>
       </div>
+      <section class="order-ratting">
+         <button >{{this.data.userData.ratings.ratingCounter}} <ion-icon style=" margin: 0; padding: 0; height: 11px; width: 11px; color: #f3cc49; margin-left: 2px" name="star" ></ion-icon></button>
+        <p >{{this.data.userData.receivedOrder}}</p>
 
-      <div style="margin: 0; margin-left: 6px">
-        <p>
-          <span>{{this.data.userData.ratings.ratingCounter}}</span>
-
-          <ion-icon
-            style="height: 11px; width: 11px; color: #f3cc49; margin-left: 3px"
-            name="star"
-          ></ion-icon>
-        </p>
-
-        <span>{{this.data.userData.receivedOrder}}</span>
-      </div>
+      </section>
     </ion-card-content>
 
-    <ion-card-content style="margin-left: 0; padding-left: 0; width: 210px">
+    <ion-card-content class="head-content">
       <ion-card-header class="ion-no-padding" style="padding: 4px 10px">
-        <ion-card-title style="margin: 0; padding: 0">
+        <ion-card-title class="head" style="margin: 0; padding: 0">
           {{this.data.userData.salutation}}
         </ion-card-title>
-
-        <ion-card-subtitle style="margin: 0; padding: 0 2px">
-          Tarrot,
+        <ion-card-subtitle class="head-title" style="margin: 0; padding: 0 2px">
+          {{this.data.userData.services[0].serviceTypeName + ","}}
         </ion-card-subtitle>
-
-        <ion-card-subtitle style="margin: 0; padding: 0 2px">
-          Exp:{{this.data.userData.aboutUs.workExperienceInMonth}}>
+        <ion-card-subtitle class="head-title" style="margin: 0; padding: 0 2px">
+          Exp:{{this.data.userData.aboutUs.workExperienceInMonth}}
         </ion-card-subtitle>
-
         <p>
-          <span
-            style="margin: 0; padding: 0 2px"
+          <span class="head-title"
             *ngFor="let lang of this.data.userData.languages"
           >
             {{lang.languageName + ", "}}
           </span>
         </p>
-
-        <p style="margin-top: 19px" class="free-price">
+        <p class="free-price">
           <span>
             <span class="free" style="color: red">FREE</span>
-
             <span class="price">
               {{ " " }}
-
               <del>{{this.data.userData.offerAmount}}</del>{{" ₹" + this.data.userData.rates}}/min
             </span>
           </span>
         </p>
       </ion-card-header>
     </ion-card-content>
+    <div class="icons-2" style="margin-right: 6px">
+      <ion-icon style="color: rgb(19, 103, 19);" *ngIf="this.data.userData.availableConsultationType.mediumStatusCall; else hello" name="call"></ion-icon>
+      <ng-template #hello>
+        <div style="color: white">h</div>
+      </ng-template>
+      <ion-icon style="color:green;" name="chatbubble-ellipses" *ngIf="true;else hello1" ></ion-icon>
+      <ng-template #hello1>
+        <div style="color: white">h</div>
+      </ng-template>
 
-    <div class="icons" style="margin-right: 6px;">
-      <ion-icon
-        name="call-outline"
-        *ngIf="this.data.userData.availableConsultationType.mediumStatusCall"
-      ></ion-icon>
-
-      <ion-icon
-        name="chatbubble-ellipses-outline"
-        *ngIf="this.data.userData.availableConsultationType.mediumStatusChat"
-      ></ion-icon>
-
-      <ion-icon
-        name="videocam-outline"
-        *ngIf="this.data.userData.availableConsultationType.mediumStatusVideo"
-      ></ion-icon>
+      <ion-icon style="color:green;"name="videocam" *ngIf="this.data.userData.availableConsultationType.mediumStatusVideo"></ion-icon>
     </div>
+  <!-- </ion-card> -->
+<!-- </ion-content> -->
 
     <!-- <ion-buttons slot="end" class="ion-padding"> -->
 
@@ -106,14 +90,14 @@
   </ion-title>
   <p style="margin-left: 20px; font-family: 'Poppins'; width: 90%; margin: auto; flex-wrap: wrap; text-align: justify; ">{{this.data.userData.aboutUs.description}}</p>
   <ion-card style="height: 200px; width: 90%;">
-    <img style="margin-left: 20px;" src="../../assets/{{this.data.userData.aboutUs.profileAstroPhoto}}" alt="Img Not Found">  
+    <img style="margin-left: 20px;" src="{{this.data.userData.profile}}" alt="Img Not Found">  
   </ion-card>
 </ion-content>
 <!-- About Part -->
 
-<!-- <ion-content> -->
-  <!-- <ion-title> About Us</ion-title> -->
-<!--  -->
-<!-- </ion-content> -->
+<ion-content>
+  <ion-title> About Us</ion-title>
+
+</ion-content>
  
 

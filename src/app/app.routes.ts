@@ -69,10 +69,6 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'test',
-    loadComponent: () => import('./test/test.page').then(m => m.TestPage)
-  },
-  {
     path: 'profile',
     loadComponent: () => import('./profile/profile.page').then( m => m.ProfilePage)
   },
@@ -87,5 +83,17 @@ export const routes: Routes = [
   {
     path: 'my-profile1',
     loadComponent: () => import('./astrologer/my-profile/my-profile.page').then( m => m.MyProfilePage)
+  },
+  {
+    path: 'media-icon-pop-up',
+    loadComponent: () => import('./media-icon-pop-up/media-icon-pop-up.page').then( m => m.MediaIconPopUpPage)
+  },
+  {
+    path: 'my-order',
+    loadComponent: () => import('./astrouser/my-order/my-order.page').then( m => m.MyOrderPage)
+  },
+  {
+    path: 'test',
+    loadComponent: () => import('./test/test.page').then( m => m.TestPage)
   },
 ];

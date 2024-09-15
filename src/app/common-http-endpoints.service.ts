@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -31,8 +31,7 @@ export class CommonHttpEndpointsService implements OnInit {
       // });
   }
   public postApi1(data: any) {
-    return this.http.post<any>('http://api.homekodi.com/auth/signin', data);
-
+    return this.http.post<any>('http://api.homekodi.com/auth/signin',data, {observe:'response'});
 }
 
 // public profileApi(){
@@ -41,9 +40,35 @@ export class CommonHttpEndpointsService implements OnInit {
   // return this.http.get<any>('http://api.homekodi.com/asg/profile',{data})
 // }
 public userProfile(){
-  const login_token = localStorage.getItem('token');
-
-  const headers = new HttpHeaders().set('Authorization','Bearer '+login_token);
+  // const login_token = localStorage.getItem('token');
+  // const headers = new HttpHeaders().set('Authorization','Bearer '+login_token);
+// return this.http.get<any>('http://api.homekodi.com/asg/profile',{headers});
+const token:string=(localStorage.getItem(('token')))!;
+   console.log(JSON.parse(token));
+    const headers = new HttpHeaders().set('Authorization',JSON.parse(token));
 return this.http.get<any>('http://api.homekodi.com/asg/profile',{headers});
+}  
+
+// public profileUpload(data:any){
+  // console.log(data);
+  // 
+  // const token:string=(localStorage.getItem(('token')))!;
+  // const headers = new HttpHeaders().set('Authorization','Bearer '+token);
+  // return this.http.post('http://api.homekodi.com/asg/upload/profilephoto',data,{headers});
+// }
+public profileUpload(image:File): Observable<any> {
+  const token:string=(localStorage.getItem(('token')))!;
+  // var updatedtoken= token.split(" ")[1];
+  console.log("Token",token);
+  // console.log("UToken",updatedtoken);
+  const formData = new FormData();
+  formData.append('file',image);
+  const headers = new HttpHeaders().set('Authorization', JSON.parse(token) );
+  console.log("Headers",headers);
+  console.log(formData);
+  
+  return this.http.post('http://api.homekodi.com/asg/upload/profilephoto', formData, { headers })
+  }
 }
-}
+
+

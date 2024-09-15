@@ -152,11 +152,9 @@
       <p style="margin-left: 3px;">
         I have read Test Astrologer Privacy Policy and agree to the Terms and conditions
       </p>
-  
     </div>
     <!-- </ion-item> -->
-    <button id="btn" type="button" (click)="onSubmit()">GET OTP</button>
-  
+    <button id="btn" type="button" (click)="onSubmit()" [disabled]="!signUpForm.valid">Submit</button>
+    <p style="text-align: center; margin-top: 2px;">Already have an account?<a style="text-decoration: none; color: red; margin-left: 1px;" routerLink="/sign-in">Sign-In</a></p>
   </ion-content>
-  
 </ion-content>

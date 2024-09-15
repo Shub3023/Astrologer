@@ -49,8 +49,8 @@ $app-theme: mat.define-theme((
 @import "@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
+// @import "@ionic/angular/css/normalize.css"; //sweet alert is not working
+// @import "@ionic/angular/css/structure.css"; //sweet alert is not working
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
 

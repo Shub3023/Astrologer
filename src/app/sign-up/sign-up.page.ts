@@ -20,7 +20,7 @@ import {
   FormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -51,6 +51,7 @@ import { FormControl } from '@angular/forms';
     CommonModule,
     NgxMatTimepickerModule,
     MatIconModule,
+    RouterLink
   ],
 })
 export class SignUpPage implements OnInit {

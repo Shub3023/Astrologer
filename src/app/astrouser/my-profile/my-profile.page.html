@@ -1,20 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="secondary">
-    <ion-buttons slot="start" onclick="backButton()">
-      <ion-back-button defaultHref="/home-page" ></ion-back-button>
+    <ion-buttons slot="start" >
+      <ion-icon  name="arrow-back-outline" (click)="backButton()" ></ion-icon>
     </ion-buttons>
     <ion-title style="text-align: center;">My Profile</ion-title>
-    <ion-buttons slot="end" class="ion-padding">
-      <ion-icon name="notifications-outline"></ion-icon>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div>
-    <ion-img  src="../../../assets/profile-image.png"></ion-img>
+    <ion-img [src]="profilePicUrl" id="profile-pick" alt="Profile Picture"></ion-img>
+    <div class="camera-icon" ><label for="input-file">
+      <ion-icon name="camera-outline" style="margin-top: 7px;" ></ion-icon>
+    </label>
+    </div>
+  <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" (change)="onFileChange($event)">
   </div>
-  <ion-segment value="info"  mode="ios" scrollable="true" style="margin-top: 5px;">
+
+   <!-- <input type="file" (change)="onChangeFile($event)"> -->
+
+  <ion-segment value="info"  mode="ios" scrollable="true" style="margin-top: 12px;">
     <ion-segment-button value="info" (click)="basicInfo()">
       <ion-label>Basic Info</ion-label>
       
@@ -62,7 +67,7 @@
         <ion-item>
           <div style="display: flex; width: 100%;">
             <div style="width: 30%;" class="label">Birth Date</div>
-            <div class="value">{{this.data?.birthDate}}</div> 
+            <div class="value">{{this.formatDate(this.data?.birthDate)}}</div> 
            </div>
         </ion-item>
         <ion-item>

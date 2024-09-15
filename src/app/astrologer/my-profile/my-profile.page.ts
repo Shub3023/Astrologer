@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { CommonHttpEndpointsService } from 'src/app/common-http-endpoints.service';
-import { addOutline } from 'ionicons/icons';
+import { addOutline, arrowBackOutline, cameraOutline, createOutline, trashOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-profile',
@@ -22,16 +23,29 @@ export class MyProfilePage implements OnInit {
   languages:boolean=false;
   specializations:boolean=false;
   gallerys:boolean=false;
+  file:any;
 
-  constructor(public commonApi: CommonHttpEndpointsService) {
-    addIcons({ addOutline });
+  constructor(public commonApi: CommonHttpEndpointsService, public router:Router) {
+    addIcons({ addOutline,arrowBackOutline,trashOutline,cameraOutline,createOutline});
   }
   ngOnInit() {
     this.commonApi.userProfile().subscribe((res) => {
       this.data = res;
       console.log(res);
     });
+    this.formatDate(this.data?.birthDate);
   }
+
+  profilePicUrl: any = '../../../assets/profile-image.png'; 
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.profilePicUrl = URL.createObjectURL(file); 
+    }
+    // this.router.navigate(['/my-profile1']);
+  }
+
 
   basicInfo(){
     this.about_me=false;
@@ -40,6 +54,7 @@ export class MyProfilePage implements OnInit {
     this.specializations=false;
     this.gallerys=false;
     this.basic_info=true;
+    this.specializations=false;
 
   }
 
@@ -93,5 +108,36 @@ export class MyProfilePage implements OnInit {
     this.basic_info=false;
     this.gallerys=true;
   }
+  backButton(){
+    this.router.navigate(['/home-page'])
+  }
+  formatDate(dateTimeString: string): string {
+    if (!dateTimeString) return '';
+    const [datePart] = dateTimeString.split(' ');
+    const [year, month, day] = datePart.split('-');
+    return `${day}-${month}-${year}`;
+  }
+
+  onChangeFile(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log("File Data", file);
+      this.commonApi.profileUpload(file).subscribe((res) => {
+        console.log("Profile:", res);
+        // Refresh the data or reload the page
+        this.refreshProfileData(); // Fetch updated profile data
+        // location.reload(); 
+      });
+    }
+  }
+  
+  refreshProfileData() {
+    this.commonApi.userProfile().subscribe((res) => {
+      this.data = res;
+      console.log("Profile Data Refreshed", res);
+    });
+  }
+  
+
 
 }

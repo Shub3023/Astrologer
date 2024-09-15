@@ -5,15 +5,25 @@
     padding: 0;
     font-family: Poppins;
 }
+ion-toolbar{
+  ion-buttons{
+      ion-icon{
+          height: 24px;
+          width: 24px;
+          margin-left: 10px;
+      }
+  }
+}
+
 ion-content{
-    --background:#decb8c;
+  --background:#FFECB2;
     div{
         ion-img{
-            height: 32%;
-            width: 32%;
+            height: 30%;
+            width: 30%;
             margin: auto;
             margin-top: 5%;
-            background-color: #decb8c;
+            background-color: #FFECB2;
         }
     }
       ion-card{
@@ -31,7 +41,6 @@ ion-content{
 
 
 ion-segment {
-    margin-top:10px;
     --background:white;
     width: 90%;
     margin: auto;
@@ -47,7 +56,12 @@ ion-segment {
 ,
 #fff
 )));
-  }
+ion-label{
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+}
 
 ion-card{
 
@@ -74,7 +88,7 @@ ion-button{
   
 }
 ion-item{
-  --min-height:10px;
+  --min-height:12px;
 }
 
 .alert-button.sc-ion-alert-ios {
@@ -91,8 +105,10 @@ ion-card{
 
 // Custom css
 .label{
+  // font-size: 1.2rem;
   font-weight:600;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  color: rgb(40, 37, 37);
 }
 .title{
   font-size: 1rem;
@@ -101,5 +117,29 @@ ion-card{
 }
 .value{
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+}
+
+input{
+  display: none;
+}
+
+
+
+.camera-icon{
+  position: absolute;
+top: 97px;
+left: 232px;
+height: 30px;
+width: 30px;
+border: 2px solid white;
+margin: auto;
+border-radius: 50%;
+text-align: center;
+background-color: #f3cc49;
+
+ion-icon{
+  color: white;
+}
+
 }

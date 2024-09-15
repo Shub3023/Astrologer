@@ -1,19 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="secondary">
-    <ion-buttons slot="start" onclick="backButton()">
-      <ion-back-button defaultHref="/home-page" ></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-icon  name="arrow-back-outline" (click)="backButton()"></ion-icon>
     </ion-buttons>
     <ion-title style="text-align: center;">My Profile</ion-title>
-    <ion-buttons slot="end" class="ion-padding">
-      <ion-icon name="notifications-outline"></ion-icon>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <div>
-    <ion-img  src="../../../assets/profile-image.png"></ion-img>
+    <div id="profile-pic-container">
+      <ion-img [src]=" this.data?.profilePhoto || profilePicUrl " id="profile-pic" alt="Profile Picture"></ion-img>
+    </div>
+    <!-- <ion-img  src="{{this.data?.profilePhoto}}" id="profile-pick" alt="Profile Picture"></ion-img> -->
+    <div class="camera-icon" ><label for="input-file">
+      <ion-icon name="camera-outline" style="margin-top: 7px;" ></ion-icon>
+    </label>
+    </div>
+  <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" (change)="onChangeFile($event)" (change)="onFileChange($event)">
   </div>
-  <ion-segment value="info"  mode="ios" scrollable="true">
+  <ion-segment value="info"  mode="ios" scrollable="true" style="margin-top: 12px;">
     <ion-segment-button value="info" (click)="basicInfo()">
       <ion-label>Basic Info</ion-label>
     </ion-segment-button>
@@ -34,6 +39,7 @@
       <ion-label>Gallery</ion-label>
     </ion-segment-button>
   </ion-segment>
+
 <ng-cotainer *ngIf="basic_info">
   <ion-content>
     <ion-card>
@@ -41,86 +47,77 @@
        <ion-list style="margin-left: 10px;">
         <ion-item>
            <div style="display: flex; width: 100%; ">
-            <div style="width: 30%;" class="label">First Name</div>
+            <div style="width: 25%;" class="label">First Name</div>
             <div class="value">{{this.data?.firstName}}</div> 
            </div>
 
         </ion-item>
         <ion-item>
           <div style="display: flex; width: 100%;">
-            <div style="width:30%;" class="label">Last Name</div>
-            <div style="">{{this.data?.lastName}}</div> 
+            <div style="width:25%;" class="label">Last Name</div>
+            <div class="value">{{this.data?.lastName}}</div> 
            </div>
 
         </ion-item>
         <ion-item>
           <div style="display: flex; width:100%; ">
-            <div style="width: 30%;" class="label">Email</div>
-            <div style="">{{this.data?.email[0].email}}</div> 
+            <div style="width: 25%;" class="label">Email</div>
+            <div class="value">{{this.data?.email[0].email}}</div> 
            </div>
 
         </ion-item>
         <ion-item>
           <div style="display: flex; width: 100%;">
-            <div style="width: 30%;" class="label">Birth Time</div>
-            <div>{{this.data?.birthTime}}</div> 
+            <div style="width: 25%;" class="label">Birth Date</div>
+            <div class="value">{{this.formatDate(this.data?.birthDate)}}</div> 
            </div>
         </ion-item>
+        
         <ion-item>
           <div style="display: flex; width: 100%;">
-            <div style="width: 30%;" class="label">Birth Date</div>
-            <div>{{this.data?.birthDate}}</div> 
-           </div>
-        </ion-item>
-        <ion-item>
-          <div style="display: flex; width: 100%;">
-            <div style="width: 30%;" class="label">Gender</div>
-            <div>{{this.data?.gender}}</div> 
+            <div style="width: 25%;" class="label">Gender</div>
+            <div class="value">{{this.data?.gender}}</div> 
            </div>
 
         </ion-item>
         <ion-item>
           <div style="display: flex; width: 100%;" c>
-            <div style="width: 30%;" class="label" >Mobile</div>
-            <div>{{this.data?.phone[0].phone}}</div> 
+            <div style="width: 25%;" class="label" >Mobile</div>
+            <div class="value">{{this.data?.phone[0].phone}}</div> 
            </div>
-
         </ion-item>
+        <ion-item>
+          <div style="display: flex; width: 100%;">
+            <div style="width: 25%;" class="label">Work Exp.</div>
+            <div class="value">{{this.data?.aboutUs.workExperienceInMonth}}</div> 
+           </div>
+        </ion-item>
+
        </ion-list>
-       <ion-title style="padding: 10px;" class="title">Permanent Adress</ion-title>
+       <ion-title style="padding: 10px;" class="title">Permanent Address</ion-title>
        <ion-list style="margin-left: 10px;">
         <ion-item>
-          <div style="display: flex; width: 100%;" class="main-div">
-            <div style="width: 30%;"  class="label" >City</div>
-            <div >{{this.data?.address[0].city.cityName}}</div> 
-           </div>
-
+          <div style="display: flex; width: 100%;">
+            <div style="width: 25%;"  class="label" >Country</div>
+            <div class="value">{{this.data?.address[0].country.countryName}}</div> 
+          </div>
         </ion-item>
         <ion-item>
           <div style="display: flex; width: 100%;">
-            <div style="width: 30%;"  class="label">Areacode</div>
-            <div >{{this.data?.address[0].areaCode}}</div> 
+            <div style="width: 25%;"  class="label">State</div>
+            <div class="value">{{this.data?.address[0].state.stateName}}</div> 
            </div>
-
         </ion-item>
         <ion-item>
           <div style="display: flex; width: 100%;">
-            <div style="width: 30%;"  class="label">State</div>
-            <div>{{this.data?.address[0].state.stateName}}</div> 
+            <div style="width: 25%;"  class="label">Areacode</div>
+            <div class="value">{{this.data?.address[0].areaCode}}</div> 
            </div>
-
         </ion-item>
         <ion-item>
           <div style="display: flex; width: 100%;">
-            <div style="width: 30%;" class="label">Country</div>
-            <div >{{this.data?.address[0].country.countryName}}</div> 
-           </div>
-
-        </ion-item>
-        <ion-item>
-          <div style="display: flex; width: 100%;">
-            <div style="width: 30%;" class="label">Complete Details</div>
-            <div >{{this.data?.address[0].country.countryName}}</div> 
+            <div style="width: 25%;" class="label">Complete Details</div>
+            <div class="value">{{this.data?.address[0].addressDescription}}</div> 
            </div>
         </ion-item>
        </ion-list>
@@ -135,7 +132,7 @@
 <ng-container *ngIf="about_me" >
    <ion-content class="about">
     <ion-card>
-      <ion-title >About Me</ion-title>
+      <ion-title class="title">About Me<ion-icon name="create-outline" style="margin-left: 70%;"></ion-icon></ion-title>
       <p>Hi</p>
     </ion-card>
    </ion-content>
@@ -143,39 +140,39 @@
 
 <!-- Bank Details -->
 <ng-container *ngIf="bank_details">
-<ion-content>
-  <ion-button class="ion-margin-verticle" style="margin-left: 88%; margin-top: 1vh; color: black;" class="ion-margin-verticle"><ion-icon name="add-outline"></ion-icon>Add Bank</ion-button>
+<ion-content class="bank_details">
+  <ion-button class="ion-margin-verticle"><ion-icon name="add-outline"></ion-icon>Add Bank</ion-button>
   <ion-card>
     <ion-list style="margin-left: 10px;">
-    <ion-item>ICICI Bank <p slot="end">Verified</p></ion-item>
+    <ion-item class="label">ICICI Bank<img src="../../../assets/green-verified-icon.png"> <p class="value" slot="end" style="color: green;">{{this.data?.bankdetails[0].bankTypeStatus}}</p></ion-item>
       <ion-item>
          <div style="display: flex; width: 100%; ">
-          <div style="width: 30%;" class="label">Full Name</div>
-          <div class="value">{{this.data?.firstName}}</div> 
+          <div style="width: 24%;" class="label">Full Name</div>
+          <div class="value">{{this.data?.bankdetails[0].fullName}}</div> 
          </div>
       </ion-item>
       <ion-item>
         <div style="display: flex; width: 100%; ">
-         <div style="width: 30%;" class="label">Account Number</div>
-         <div class="value">{{this.data?.firstName}}</div> 
+         <div style="width: 24%;" class="label">Account Number</div>
+         <div class="value">{{this.data?.bankdetails[0].accountNumber}}</div> 
         </div>
      </ion-item>
      <ion-item>
       <div style="display: flex; width: 100%; ">
-       <div style="width: 30%;" class="label">IFSC Code</div>
-       <div class="value">{{this.data?.firstName}}</div> 
+       <div style="width: 24%;" class="label">IFSC Code</div>
+       <div class="value">{{this.data?.bankdetails[0].ifscCode}}</div> 
       </div>
    </ion-item>
    <ion-item>
     <div style="display: flex; width: 100%; ">
-     <div style="width: 30%;" class="label">Account Type</div>
-     <div class="value">{{this.data?.firstName}}</div> 
+     <div style="width: 24%;" class="label">Account Type</div>
+     <div class="value">{{this.data?.bankdetails[0].accountType}}</div> 
     </div>
  </ion-item>
  <ion-item>
   <div style="display: flex; width: 100%; ">
-   <div style="width: 30%;" class="label">Created Date</div>
-   <div class="value">{{this.data?.firstName}}</div> 
+   <div style="width: 24%;" class="label">Created Date</div>
+   <div class="value">{{this.data?.bankdetails[0].crtDate}}</div> 
   </div>
 </ion-item>
 
@@ -183,3 +180,44 @@
   </ion-card>
 </ion-content>
 </ng-container>
+
+<!-- Languages -->
+<ng-container *ngIf="languages">
+  <ion-content class="language">
+    <ion-card>
+      <!-- <ion-title style="margin-left: 5px;">My Languages</ion-title> -->
+       <ion-title class="title">My Languages</ion-title>
+      <ion-list >
+        <ion-item>Hindi<ion-icon slot="end" name="trash-outline"></ion-icon></ion-item>
+        <ion-item>Marathi<ion-icon slot="end" name="trash-outline"></ion-icon></ion-item>
+        <ion-item>English<ion-icon slot="end" name="trash-outline"></ion-icon></ion-item>
+      </ion-list>
+  <ion-button class="ion-margin-verticle"><ion-icon name="add-outline"></ion-icon>Add Language</ion-button>
+    </ion-card>
+  </ion-content>
+</ng-container>
+
+<ng-container *ngIf="specializations">
+  <ion-content class="specialization">
+    <ion-card>
+      <ion-title>My Services</ion-title>
+      <ion-list>
+        <ion-item>Vedic<ion-icon slot="end" name="trash-outline"></ion-icon></ion-item>
+      </ion-list>
+  <ion-button class="ion-margin-verticle"><ion-icon name="add-outline"></ion-icon>Add Services</ion-button>
+    </ion-card>
+  </ion-content>
+</ng-container>
+
+<ng-container *ngIf="gallerys">
+  <ion-content class="gallary">
+    <ion-card>
+      <ion-title>Gallery (0/3)</ion-title>
+      <div>
+        <img src="">
+       <p> Upload Photo</p>
+      </div>
+    </ion-card>
+  </ion-content>
+</ng-container>
+</ion-content>

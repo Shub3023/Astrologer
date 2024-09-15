@@ -6,9 +6,9 @@
 
 ion-card {
   background: #f7cf2df6;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  box-shadow: none;
+  // border-bottom-left-radius: 15px;
+  // border-bottom-right-radius: 15px;
+  // box-shadow: none;
 }
 
 ion-card-title {
@@ -19,7 +19,7 @@ ion-card-title {
 .main{
     height: 31%;
     --ion-background-color: #f7cf2df6;
-    border: 1px solid black;
+    // border: 1px solid black;
 }
 
 .main ion-img{
@@ -90,15 +90,22 @@ h3{
         margin-left: 10px;
       }
       ::ng-deep.mat-mdc-select-panel{
-        --mat-select-panel-background-color: #f2ee83 !important;
+        --mat-select-panel-background-color: #b2ffc9!important;
        }
-       ::ng-deep.mat-datepicker-content{
-        --mat-datepicker-calendar-container-background-color: #f2ee83 !important;
+       ::ng-deep.mat-datepicker-content .mat-calendar{
+        // --mat-datepicker-calendar-container-background-color: #f2ee83 !important;
+        background-color: #f7cf07;
        }
        ::ng-deep .mat-mdc-icon-button{
      
         color: #f7cf07 !important;
     }
+    ::ng-deep.mat-datepicker-content{
+
+      --mat-datepicker-calendar-container-background-color: #f2ee83 !important;
+
+     }
+
 // ::ng-deep .mat-mdc-select-value{
 //     height: 49px!important;
 // }

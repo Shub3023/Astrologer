@@ -1,0 +1,136 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title class="header-title">My Orders</ion-title>
+    <ion-buttons slot="end" class="ion-padding">
+      <ion-icon
+
+        name="notifications-outline"
+      ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="search-line">
+    <span>
+      <mat-form-field
+        appearance="outline"
+        style="--mdc-icon-button-state-layer-size: 30px !important"
+      >
+        <input matInput [matDatepicker]="picker1" placeholder="Start date" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </span>
+    <span class="enddate">
+      <mat-form-field
+        appearance="outline"
+        style="--mdc-icon-button-state-layer-size: 30px !important"
+      >
+        <input matInput [matDatepicker]="picker" placeholder="End date" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </span>
+    <span>
+      <button class="search-btn">
+        <mat-icon class="search-icon">search</mat-icon>
+      </button>
+    </span>
+  </div>
+
+  <ion-segment
+    value="info"
+    mode="ios"
+    scrollable="true"
+    style="margin-top: 12px"
+  >
+    <ion-segment-button class="segment-btn" value="info">
+      <ion-label>Consultation</ion-label>
+    </ion-segment-button>
+    <ion-segment-button class="segment-btn" value="notifications">
+      <ion-label>Book A Pooja</ion-label>
+    </ion-segment-button>
+    <ion-segment-button class="segment-btn" value="account">
+      <ion-label>Product Service</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- card content -->
+
+  <ion-content id="card">
+    <ion-card>
+      <div>
+        <ion-img src="../../../assets/profile-image.png"></ion-img>
+        <ion-text>Anupam Kumar</ion-text>
+        <button>See Details</button>
+      </div>
+      <div class="card-middle-section">
+        <p>#RT -RF-17889262</p>
+        <p style="display: flex; margin-left: 42%" slot="end">
+          <ion-img
+            style="height: 12px; width: 12px; margin-top: 3%"
+            src="../../../assets/verified icon.svg"
+          ></ion-img>
+          <span class="active-label">Active</span>
+        </p>
+      </div>
+      <section class="card-footer">
+        <h4>$200</h4>
+        <h5>Created on 20 Sep 2024</h5>
+      </section>
+    </ion-card>
+  </ion-content>
+</ion-content>
+
+<!-- Footer Tabs -->
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button
+      tab="home"
+      [ngClass]="{'selected-tab': selectedTab === 'home'}"
+    >
+      <ion-icon name="home-sharp"></ion-icon>
+      <ion-label>HOME</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button
+      tab="chat"
+      [ngClass]="{'selected-tab': selectedTab === 'chat'}"
+    >
+      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      <ion-label>Chat</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button
+      tab="live"
+      [ngClass]="{'selected-tab': selectedTab === 'live'}"
+    >
+      <ion-icon name="videocam-sharp"></ion-icon>
+      <ion-label>Live</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button
+      tab="call"
+      [ngClass]="{'selected-tab': selectedTab === 'call'}"
+    >
+      <ion-icon name="call-sharp"></ion-icon>
+      <ion-label>Call</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button
+      tab="pooja"
+      [ngClass]="{'selected-tab': selectedTab === 'pooja'}"
+    >
+      <ion-icon name="flower-sharp"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

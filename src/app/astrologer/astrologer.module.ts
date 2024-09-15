@@ -22,11 +22,9 @@ export class AstrologerModule {
     addIcons({ addOutline });
   }
   ngOnInit() {
-    this.commonApi.userProfile().subscribe((res) => {
-      this.data= res;
-      console.log(res);
-    });
   }
+
+  
 
   
   

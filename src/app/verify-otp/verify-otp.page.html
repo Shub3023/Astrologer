@@ -1,7 +1,6 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <!-- <ion-card-title id="header-top" click="openOtp() ">Skip</ion-card-title> -->
       <button style="margin-left: 350px; margin-top: 14px; color: white; background-color:  #f7cf2df6;" >Skip</button>
     </ion-card-header>
     <ion-img src="../../assets/WhatsApp_Image_2024-08-01_at_11.01.15_AM-removebg-preview.png" alt=""></ion-img>
@@ -10,34 +9,30 @@
     </ion-card-header>
   </ion-card>
 
-    <h1>Verify OTP</h1>
-    <form [formGroup]="otpForm">
-      <!-- <ion-list>
-      <ion-item>
-    <ion-input fill="outline" placeholder="Mobile number" formControlName="mobileNumber"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="signInForm.get('mobileNumber')!.invalid && (signInForm.get('mobileNumber')!.dirty || signInForm.get('mobileNumber')!.touched)">
-      <ion-label color="danger" *ngIf="signInForm.get('mobileNumber')!.errors?.['required']">Mobile number is required</ion-label>
-      <ion-label color="danger" *ngIf="signInForm.get('mobileNumber')!.errors?.['pattern']">Enter a valid mobile number</ion-label>
-    </ion-item> -->
-<div class="input">
-  <input class="inp" type="text" maxlength="1" (keyup)="moveToNext($event, 'input2')" #input1  formControlName="num1"/>
-  <input class="inp" type="text" maxlength="1" (keyup)="moveToNext($event, 'input3')" #input2 formControlName="num2"/>
-  <input class="inp" type="text" maxlength="1" (keyup)="moveToNext($event, 'input4')" #input3 formControlName="num3" />
-  <input class="inp" type="text" maxlength="1" (keyup)="moveToNext($event, null)" #input4  formControlName="num4"/>
-</div>
-<button id="btn-top" expand="block" type="submit" (click)="submitOtp()">Submit</button>
-</form>
-<div class="otp">
-  <p class="resend-otp-timer">Resend OTP available <span style="color:rgb(43, 253, 2)" *ngIf="hide">{{display}}S</span></p>
-<button [disabled]="isButtonDisabled" class="resend-otp-btn" (click)='startTimer()'>RESEND OTP</button>
-</div>
-<ion-list class="bottom-input">
-  <ion-item>
-<ion-input id="first-input" placeholder=" Privacy"></ion-input>
-<ion-input id="second-input" placeholder="Verified"></ion-input>
-<ion-input id="third-input" placeholder="Trusted"></ion-input>
-</ion-item>
-</ion-list>
+  <h1>Verify OTP</h1>
+  <form [formGroup]="otpForm">
+    <div class="input">
+      <input class="inp" type="text" maxlength="1" (keyup)="moveToNext($event, 'input2')"  (keydown)="moveToBack($event, null)" #input1  formControlName="num1" (keypress)="OnlyNumbersAllowed($event)"/>
+      <input class="inp" type="text" maxlength="1" (keyup)="moveToNext($event, 'input3')" (keydown)="moveToBack($event, 'input1')" #input2 formControlName="num2" (keypress)="OnlyNumbersAllowed($event)"/>
+      <input class="inp" type="text" maxlength="1" (keyup)="moveToNext($event, 'input4')" (keydown)="moveToBack($event, 'input2')" #input3 formControlName="num3" (keypress)="OnlyNumbersAllowed($event)"/>
+      <input class="inp" type="text" maxlength="1" (keyup)="moveToNext($event, null)" (keydown)="moveToBack($event, 'input3')" #input4  formControlName="num4" (keypress)="OnlyNumbersAllowed($event)"/>
+    </div>
+    <!-- The submit button is now disabled based on the form's validity -->
+    <button id="btn-top" expand="block" type="submit" [disabled]="!otpForm.valid" (click)="submitOtp()">Submit</button>
+  </form>
 
+  <div class="otp">
+    <p class="resend-otp-timer">Resend OTP available <span style="color:rgb(43, 253, 2)" *ngIf="hide">{{display}}S</span></p>
+    <button [disabled]="isButtonDisabled" class="resend-otp-btn" (click)="startTimer()">RESEND OTP</button>
+  </div>
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-grid>
+    <ion-row>
+      <ion-col style="border-left: none;"><p>100%</p><p>Privacy</p></ion-col>
+      <ion-col>Verified</ion-col>
+      <ion-col style="border-right: none;">Trusted</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

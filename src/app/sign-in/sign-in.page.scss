@@ -51,7 +51,7 @@ h1 {
   height: 50px;
   background-color: #f7cf2df6;
   font-size: 20px;
-  color: black;
+  // color: black;
   font-weight: bold;
   width: 96%;
   margin: auto;
@@ -59,6 +59,7 @@ h1 {
   --box-shadow: none;
   font-family: 'Poppins';
   border-radius: 10px;
+  // margin-bottom: 2vh;
 }
 
 p {
@@ -79,6 +80,7 @@ p {
   --border-width: 0.5px !important;
   --border-color: #f7cf2df6;
   font-family: 'Poppins';
+  margin-top: 2vh;
 }
 
 .bottom-input {
@@ -111,10 +113,39 @@ p {
 .term-condition {
   display: flex;
   width: 98%;
-  margin-left: 10px;
+  margin: 0;
+  margin-left: 6px;
+  // margin-bottom: 2vh;
 }
 
 ion-checkbox {
   --checkbox-background-checked:#0054e9;
   --border-color-checked:#0054e9;
 }
+
+
+ion-footer{
+  ion-grid{
+    --ion-grid-padding-sm
+    ion-row{
+      margin-left: 5%;
+    }
+  }
+
+}
+ion-col {
+  border: solid 1px #f7cf2df6 ;
+  color:#f7cf2df6 ;
+  text-align: center;
+  border-bottom: none;
+  border-top: none;
+  padding: 10px;
+  font-family: 'Poppins';
+
+  p{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+  }
+}
+

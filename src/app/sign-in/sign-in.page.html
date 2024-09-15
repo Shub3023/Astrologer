@@ -25,29 +25,33 @@
     <div class="phone">
       <mat-form-field appearance="outline" class="input-group" style="margin-left: 8px; width: 96%;">
         <mat-label>Mobile number</mat-label>
-        <input matInput type="text" formControlName="mobileNumber"/>
+        
+        <input matInput type="text" formControlName="mobileNumber" (keypress)="OnlyNumbersAllowed($event)"  />
         <mat-error *ngIf="signInForm.get('mobileNumber')?.hasError('required')">Mobile number is required</mat-error>
         <mat-error *ngIf="signInForm.get('mobileNumber')?.hasError('pattern')">Must be number have 10 digits</mat-error>
       </mat-form-field>
     </div>
-<button id="btn-top" expand="block" type="submit" [disabled]="signInForm.invalid" (click)="onSignIn(signInForm.get('mobileNumber')?.value)">GET OTP</button>
-</form>
+<!-- <button id="btn-top" expand="block" type="submit" [disabled]="signInForm.invalid" (click)="onSignIn(signInForm.get('mobileNumber')?.value)">GET OTP</button> -->
 <div class="term-condition">
-  <box-icon name='checkbox'></box-icon>
-  <ion-checkbox  class="checkbox-icon" style="margin-top: 10px; margin-left: 10px;   border-color: blue; color: blue;"></ion-checkbox>
-  <p>
-    I have read Test Astrologer <span style="color: blue;">Privacy Policy</span> and agree to the <span style="color: rgb(2, 2, 99);">Terms and conditions</span> 
+ <div style=" margin-left: 10px; margin-top:10px"><input type="checkbox" formControlName="cb" ></div>
+  <!-- <box-icon name='checkbox'></box-icon> -->
+  <!-- <ion-checkbox formControlName="cb" class="checkbox-icon" style="margin-top: 10px; margin-left: 10px;   border-color: blue; color: blue;"></ion-checkbox> -->
+  <p style="width: 92%; ">
+    I have read Test Astrologer <span style="color: blue;">Privacy Policy</span> and agree to the <span style="color: blue;">Terms and conditions</span> 
   </p>
 </div>
+</form>
 
+<button id="btn-top" expand="block" type="submit" [disabled]="!signInForm.valid" (click)="onSignIn(signInForm.get('mobileNumber')?.value)">GET OTP</button>
 
 <ion-button id="btn-bottom" expand="block" shape="round" fill="outline" (click)="openSignUpPage()">CREATE NEW ACCOUNT</ion-button>
-<ion-list class="bottom-input">
-  <ion-item>
-<ion-input id="first-input" placeholder=" Privacy"></ion-input>
-<ion-input id="second-input" placeholder="Verified"></ion-input>
-<ion-input id="third-input" placeholder="Trusted"></ion-input>
-</ion-item>
-</ion-list>
-
 </ion-content>
+<ion-footer class="ion-no-border">
+  <ion-grid>
+    <ion-row>
+      <ion-col style="border-left: none;"><p>100%</p><p>Privacy</p></ion-col>
+      <ion-col>Verified</ion-col>
+      <ion-col style="border-right: none;">Trusted</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

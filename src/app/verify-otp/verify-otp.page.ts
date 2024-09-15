@@ -17,6 +17,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { SignInPage } from '../sign-in/sign-in.page';
 import { DataService } from '../data.service';
 import { CommonHttpEndpointsService } from '../common-http-endpoints.service';
+// import { HttpResponse } from '@capacitor/core';
+import { HttpResponse, } from '@angular/common/http';
 
 @Component({
   selector: 'app-verify-otp',
@@ -30,7 +32,7 @@ import { CommonHttpEndpointsService } from '../common-http-endpoints.service';
 })
 export class VerifyOtpPage implements OnInit {
 
-  constructor(private fb:FormBuilder,private dialog:MatDialog,private router:Router,public data:DataService,public commonService:CommonHttpEndpointsService) {
+  constructor(private fb:FormBuilder,private dialog:MatDialog,private router:Router,public dataService:DataService,public commonService:CommonHttpEndpointsService) {
     this.inputMap = new Map<string, ElementRef>();
   }
 
@@ -46,14 +48,17 @@ export class VerifyOtpPage implements OnInit {
     this.startTimer();
 
     this.otpForm = this.fb.group({
-      num1: ['', ],
-      num2: ['', ],
-      num3: ['', ],
-      num4: ['', ],
+      num1: ['',[Validators.required] ],
+      num2: ['', [Validators.required] ],
+      num3: ['', [Validators.required] ],
+      num4: ['', [Validators.required] ],
 
     });
-    console.log(this.data.mobile)
+
+    this.dataService.sendOtp(this.otpForm.value);
   }
+
+  
 
   startTimer() {
 
@@ -112,6 +117,17 @@ export class VerifyOtpPage implements OnInit {
     }
   }
 
+
+  moveToBack(event: KeyboardEvent, previousInputId: string | null) {
+    const target = event.target as HTMLInputElement;
+    if (event.key === 'Backspace' && target.value.length === 0 && previousInputId) {
+      const previousInput = this.inputMap.get(previousInputId);
+      if (previousInput) {
+        previousInput.nativeElement.focus();
+      }
+    }
+  }
+
   otpForm!:FormGroup
   onSubmit(){
     // alert("hello")
@@ -125,25 +141,39 @@ export class VerifyOtpPage implements OnInit {
     }
   }
   submitOtp() {
+    console.log(!this.otpForm.valid);
+    
     const otp=this.otpForm.get('num1')?.value +''+this.otpForm.get('num2')?.value+''+this.otpForm.get('num3')?.value+''+this.otpForm.get('num4')?.value+'';
     console.log(otp);
 
     const data={
-      "phone":this.data.mobile,
+      "phone":this.dataService.mobile,
       "otp":otp,
       "accountType":"mobile",
       "token":"dMKvTQMKRJiwPOmCCAv_C0:APA91bG7p8IcgGYcQoXLVwyrlieqBMQVVU1oEbZfAbQwKoQz5zNiLPcwswzSicENYjx1Yx2Z4KgIVQ4zbaiIvbVrrwGicaQCRA0s2uTrBxNy5hFbFKiqVInqrMd_N2wkwNFy9nqoD8AP",
       "alias":"LOCALHOST5400"
    }
-   this.commonService.postApi1(data).subscribe((res)=>{
-     console.log(res);
-     localStorage.setItem('token',res.token);
-   })
-   
-   
+   this.commonService.postApi1(data).subscribe((Response:HttpResponse<any>)=>{
+    const token = Response.headers.get('authorization');
+    console.log(token);
+    // console.log(Response.body.accountType);
+    this.dataService.type=Response.body.accountType;
+    console.log("TYPE ",this.dataService.type);
     
- 
+    localStorage.setItem( 'token',JSON.stringify(token));
+   })
+  
     this.router.navigate(['/home-page']);
+    
   }
+  OnlyNumbersAllowed(event: KeyboardEvent): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
+
 
 }

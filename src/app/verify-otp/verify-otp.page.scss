@@ -42,10 +42,11 @@ h1{
   height: 50px;
   background-color: #f7cf2df6;
   font-size: 20px;
-  color: black;
+  // color: black;
   font-weight: bold;
-  margin: auto;
   width: 96%;
+  margin: auto;
+  margin-left: 7px;
 //   margin-top: 5%;
   box-shadow: none;
   font-family: 'Poppins';
@@ -129,15 +130,12 @@ font-size: 20px;
 .resend-otp-btn{
   height: 36px;
   font-size:1rem;
-  // color: black;
-  font-weight: bold;
+  // font-weight: 400;
   width: 35%;
   font-family: 'Poppins';
   background-color: #f7cf2df6;
   border-radius: 6px;
   margin-right: 3%;
-
-
 }
 
 ::ng-deep .inp[_ngcontent-ng-c2698407370] {
@@ -162,3 +160,40 @@ font-size: 20px;
 .inp[_ngcontent-ng-c2945706941] {
   text-align: center;
 }
+
+.inp[_ngcontent-ng-c1049370712] {
+  text-align: center;
+  color: #f7cf2df6;
+}
+.inp[_ngcontent-ng-c3297644679] {
+  text-align: center;
+  color: #f7cf2df6;
+}
+.inp[_ngcontent-ng-c218901666] {
+  text-align: center;
+}
+ion-footer{
+  ion-grid{
+    --ion-grid-padding-sm
+    ion-row{
+      margin-left: 5%;
+    }
+  }
+
+}
+ion-col {
+  border: solid 1px #f7cf2df6 ;
+  color:#f7cf2df6 ;
+  text-align: center;
+  border-bottom: none;
+  border-top: none;
+  padding: 10px;
+  p{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+
+  }
+}
+
+

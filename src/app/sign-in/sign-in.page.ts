@@ -45,6 +45,7 @@ export class SignInPage implements OnInit {
   ngOnInit(): void {
     this.signInForm = this.fb.group({
       mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      cb:[false,Validators.requiredTrue]
     });
     console.log('Form initialized:', this.signInForm.value);
   }
@@ -106,6 +107,15 @@ export class SignInPage implements OnInit {
   homePage() {
     this.router.navigate(['/home']);
   }
+  OnlyNumbersAllowed(event: KeyboardEvent) {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
+  
 }
 
 
